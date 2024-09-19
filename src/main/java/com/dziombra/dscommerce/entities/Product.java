@@ -18,7 +18,7 @@ public class Product {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    private double price;
+    private Double price;
 
     private String imgUrl;
 
@@ -26,7 +26,10 @@ public class Product {
     @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories =  new HashSet<>();
 
-    public Product(Long id, String name, String description, double price, String imgUrl) {
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> items = new HashSet<>();
+
+    public Product(Long id, String name, String description, Double price, String imgUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -77,4 +80,7 @@ public class Product {
     public Set<Category> getCategories() {
         return categories;
     }
+
+
+
 }
