@@ -1,7 +1,6 @@
 package com.dziombra.dscommerce.entities;
 
 import jakarta.persistence.*;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -31,6 +30,9 @@ public class Product {
     @OneToMany(mappedBy = "id.product")
     private Set<OrderItem> items = new HashSet<>();
 
+    public Product() {
+    }
+
     public Product(Long id, String name, String description, Double price, String imgUrl) {
         this.id = id;
         this.name = name;
@@ -38,6 +40,7 @@ public class Product {
         this.price = price;
         this.imgUrl = imgUrl;
     }
+
 
     public Long getId() {
         return id;
