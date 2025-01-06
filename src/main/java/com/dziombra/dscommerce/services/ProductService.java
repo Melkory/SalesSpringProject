@@ -1,6 +1,7 @@
 package com.dziombra.dscommerce.services;
 
 import com.dziombra.dscommerce.dto.ProductDTO;
+import com.dziombra.dscommerce.dto.ProductMinDTO;
 import com.dziombra.dscommerce.entities.Product;
 import com.dziombra.dscommerce.repositories.ProductRepository;
 import com.dziombra.dscommerce.services.exceptions.DatabaseException;
@@ -31,9 +32,9 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public Page<ProductDTO> findAll (String name, Pageable pageable) {
+    public Page<ProductMinDTO> findAll ( String name, Pageable pageable) {
         Page<Product> result = repository.searchByName(name, pageable);
-        return result.map(x -> new ProductDTO(x));
+        return result.map(x -> new ProductMinDTO(x));
     }
 
     @Transactional()
