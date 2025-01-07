@@ -17,8 +17,6 @@ public class User implements UserDetails {
 
         private String name;
 
-        private String age;
-
         @Column(unique = true)
         private String email;
 
